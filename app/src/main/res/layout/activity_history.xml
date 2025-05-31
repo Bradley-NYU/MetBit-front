@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#33c3b049">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_marginTop="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:padding="12dp">
+
+            <ImageButton
+                android:id="@+id/btn_explore"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentStart="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/search"/>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_title"
+                android:gravity="center"
+                android:fontFamily="@font/ming_medium"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true" />
+
+            <ImageButton
+                android:id="@+id/btn_x"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentEnd="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/x"/>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:clipToPadding="false"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent">
+
+
+
+        <!-- MET 图标 -->
+        <ImageView
+            android:id="@+id/btn_home"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/metlogo"
+            android:contentDescription="Home"/>
+
+    </LinearLayout>
+</FrameLayout>

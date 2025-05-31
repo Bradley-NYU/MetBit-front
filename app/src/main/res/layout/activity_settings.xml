@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#33c3b049">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_marginTop="36dp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置"
+                android:gravity="center"
+                android:fontFamily="@font/ming_medium"
+                android:textSize="20sp"
+                android:layout_centerVertical="true"
+                android:layout_centerInParent="true" />
+
+            <ImageButton
+                android:id="@+id/btn_x"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_alignParentEnd="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/x"/>
+
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+
+        <!-- 日夜变换 -->
+        <RelativeLayout
+            android:id="@+id/theme_setting"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <ImageView
+                android:id="@+id/icon_theme"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/a_daynight"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/text_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ming_medium"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/icon_theme"
+                android:layout_marginStart="12dp"/>
+
+            <TextView
+                android:id="@+id/status_theme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ming_medium"
+                android:textColor="#999999"
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- 音效 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <ImageView
+                android:id="@+id/icon_sound"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/a_music"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/text_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:fontFamily="@font/ming_medium"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/icon_sound"
+                android:layout_marginStart="12dp"/>
+
+            <Switch
+                android:id="@+id/switch_sound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- 中英切换 -->
+        <RelativeLayout
+            android:id="@+id/language_setting"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <ImageView
+                android:id="@+id/icon_language"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:fontFamily="@font/ming_medium"
+                android:src="@drawable/a_night"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/text_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:fontFamily="@font/ming_medium"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/icon_language"
+                android:layout_marginStart="12dp"/>
+
+            <TextView
+                android:id="@+id/status_language"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:fontFamily="@font/ming_medium"
+                android:textColor="#999999"
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- 清除缓存 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <ImageView
+                android:id="@+id/icon_clear"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/a_cloud"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/text_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/icon_clear"
+                android:fontFamily="@font/ming_medium"
+                android:layout_marginStart="12dp"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- 隐私政策 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <ImageView
+                android:id="@+id/icon_privacy"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/a_book"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/text_privacy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/ming_medium"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/icon_privacy"
+                android:layout_marginStart="12dp"/>
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0" />
+
+        <!-- 关于我们 -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <ImageView
+                android:id="@+id/icon_about"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/a_us"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/text_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ming_medium"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/icon_about"
+                android:layout_marginStart="12dp"/>
+
+            <TextView
+                android:id="@+id/version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="v 1.0.0"
+                android:fontFamily="@font/ming_medium"
+                android:textColor="#999999"
+                android:textSize="14sp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</FrameLayout>

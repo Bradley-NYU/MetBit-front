@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MetBit</string>
+    <string name="action_settings">Settings</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="settings_title">设置</string>
+    <string name="account_security">账号与安全</string>
+    <string name="theme_switch">日夜变换</string>
+    <string name="sound_effects">音效</string>
+    <string name="language_switch">中英切换</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="privacy_policy">隐私政策</string>
+    <string name="about_us">关于我们</string>
+    <string name="not_logged_in">未登录</string>
+    <string name="version">版本</string>
+
+
+    <string name="main_title">大都会藏品</string>
+
+
+    <string-array name="month_names">
+        <item>一月</item>
+        <item>二月</item>
+        <item>三月</item>
+        <item>四月</item>
+        <item>五月</item>
+        <item>六月</item>
+        <item>七月</item>
+        <item>八月</item>
+        <item>九月</item>
+        <item>十月</item>
+        <item>十一月</item>
+        <item>十二月</item>
+    </string-array>
+
+    <string-array name="week_names">
+        <item>星期日</item>
+        <item>星期一</item>
+        <item>星期二</item>
+        <item>星期三</item>
+        <item>星期四</item>
+        <item>星期五</item>
+        <item>星期六</item>
+    </string-array>
+
+    <string name="search_hint">搜索你感兴趣的</string>
+    <string name="cancel">取消</string>
+</resources>

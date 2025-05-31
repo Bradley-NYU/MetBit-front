@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/search_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/art005" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_marginStart="12dp">
+
+        <TextView
+            android:id="@+id/search_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标题"
+            android:textSize="18sp"
+            android:textColor="#333333"
+            android:fontFamily="@font/ming_medium" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1" /> <!-- 重点插入一个空白View占位 -->
+
+        <TextView
+            android:id="@+id/search_culture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="文化"
+            android:fontFamily="@font/ming_medium"
+            android:textSize="14sp"
+            android:textColor="#999999"
+            android:layout_marginTop="6dp" />
+    </LinearLayout>
+</LinearLayout>
