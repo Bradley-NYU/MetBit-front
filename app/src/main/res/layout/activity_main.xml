@@ -21,13 +21,6 @@
         android:alpha="1"
         android:visibility="visible">
 
-        <!-- 半透明遮罩在上面 -->
-<!--        <View-->
-<!--            android:id="@+id/overlay_layer"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="@drawable/overlay_gradient" />-->
-
         <!-- 镂空字体 -->
         <com.example.metbit.custom.HoleTextView
             android:id="@+id/date_mask"

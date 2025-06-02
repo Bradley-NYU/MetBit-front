@@ -37,6 +37,8 @@ import com.example.metbit.Retrofit.ApiService;
 import com.example.metbit.art.Artifact;
 import com.example.metbit.art.HistoryActivity;
 import com.example.metbit.article.AllArticleActivity;
+import com.example.metbit.common.FullscreenHelper;
+import com.example.metbit.common.LocaleHelper;
 import com.example.metbit.custom.HoleTextView;
 import com.example.metbit.settings.SettingsActivity;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -53,18 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     private SharedPreferences prefs;
-    private String langCode;
+
+    private BroadcastReceiver languageChangedReceiver;//广播接收
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
-
-        prefs = getSharedPreferences("settings", MODE_PRIVATE); //
-        langCode = prefs.getString("language", "zh");
-        Locale locale = new Locale(langCode);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.setLocale(locale);
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        prefs = getSharedPreferences("settings", MODE_PRIVATE);
+        LocaleHelper.applyLocale(this);//替换每次都要重读写的语言设置
 
         super.onCreate(savedInstanceState);
 
@@ -82,14 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         checkAndChangeBackgroundColor();
         //设置沉浸式全屏
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        );
+        FullscreenHelper.enableFullscreen(this);
 
 
 
@@ -228,6 +218,35 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AllArticleActivity.class);
             startActivity(intent);
         });
+
+        languageChangedReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                // 重新设置语言
+                String langCode = getSharedPreferences("settings", MODE_PRIVATE)
+                        .getString("language", "zh");
+                Locale locale = new Locale(langCode);
+                Locale.setDefault(locale);
+                Configuration config = new Configuration();
+                config.setLocale(locale);
+                getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+
+                // 更新日期显示
+                TextView dateDetail = findViewById(R.id.date_detail);
+                Calendar calendar = Calendar.getInstance();
+                int month = calendar.get(Calendar.MONTH) + 1;
+                String[] months = getResources().getStringArray(R.array.month_names);
+
+                int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+                String[] weeks = getResources().getStringArray(R.array.week_names);
+
+                String detail = months[month - 1] + " · " + weeks[dayOfWeek - 1];
+                dateDetail.setText(detail);
+            }
+        };
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                languageChangedReceiver, new IntentFilter("LANGUAGE_CHANGED"));
     }
 
     private void checkAndChangeBackgroundColor() {
@@ -242,5 +261,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         checkAndChangeBackgroundColor();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (languageChangedReceiver != null) {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(languageChangedReceiver);
+        }
     }
 }

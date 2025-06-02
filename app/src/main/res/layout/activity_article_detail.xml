@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!-- 顶部导航栏 -->
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <!-- 顶部栏 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:paddingTop="36dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         android:background="#33c3b049">
 
-        <RelativeLayout
-            android:paddingTop="36dp"
-            android:layout_marginTop="36dp"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:padding="12dp">
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/rebutton2"
+            android:contentDescription="返回"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-            <ImageButton
-                android:id="@+id/btn_back"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:background="@null"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:src="@drawable/rebutton2"
-                android:contentDescription="返回" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/ming_medium"
-                android:textSize="20sp"
-                android:layout_centerInParent="true"/>
-        </RelativeLayout>
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/ming_medium"
+            app:layout_constraintStart_toEndOf="@id/btn_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 可滚动内容区域 -->
     <ScrollView
@@ -58,11 +64,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
 
-
-
-
-
-            <!-- 段落容器（动态插入段落） -->
+            <!-- 段落容器 -->
             <LinearLayout
                 android:id="@+id/paragraph_container"
                 android:layout_width="match_parent"
@@ -70,5 +72,4 @@
                 android:orientation="vertical"/>
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.metbit.search;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,6 +21,7 @@ import com.example.metbit.Retrofit.ApiClient;
 import com.example.metbit.Retrofit.ApiService;
 import com.example.metbit.art.Artifact;
 import com.example.metbit.art.ArtifactAdapter;
+import com.example.metbit.common.FullscreenHelper;
 
 import java.util.List;
 
@@ -52,14 +54,7 @@ public class SearchResultActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_result);
 
         //设置沉浸式全屏
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        );
+        FullscreenHelper.enableFullscreen(this);
 
 
 
@@ -79,7 +74,7 @@ public class SearchResultActivity extends AppCompatActivity {
     }
 
     private void searchArtifacts(String keyword) {
-
+        Log.d("SearchResult", "Searching keyword: " + keyword);
         SharedPreferences prefs = getSharedPreferences("settings", MODE_PRIVATE);
         String lang = prefs.getString("language", "zh"); // 默认为中文
         ApiService apiService = ApiClient.getRetrofit().create(ApiService.class);
@@ -87,15 +82,20 @@ public class SearchResultActivity extends AppCompatActivity {
         apiService.searchArtifacts(keyword, lang).enqueue(new Callback<List<Artifact>>() {
             @Override
             public void onResponse(Call<List<Artifact>> call, Response<List<Artifact>> response) {
+                Log.d("SearchResult", "HTTP status: " + response.code());
                 if (response.isSuccessful() && response.body() != null) {
                     List<Artifact> artifacts = response.body();
+                    Log.d("SearchResult", "Response size: " + artifacts.size());
                     resultRecycler.setAdapter(new SearchResultAdapter(artifacts, SearchResultActivity.this));
+                } else {
+                    Log.e("SearchResult", "Empty or unsuccessful response");
                 }
             }
 
             @Override
             public void onFailure(Call<List<Artifact>> call, Throwable t) {
                 t.printStackTrace();
+                Log.e("SearchResult", "Search failed", t);
             }
         });
     }

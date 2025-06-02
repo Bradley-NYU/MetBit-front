@@ -26,6 +26,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.metbit.R;
+import com.example.metbit.common.FullscreenHelper;
 import com.github.chrisbanes.photoview.PhotoView;
 import android.graphics.drawable.BitmapDrawable;
 
@@ -78,14 +79,7 @@ public class ArtifactDetailActivity extends AppCompatActivity {
         Log.d("CHECK", "当前设置语言 = " + lang);
 
         // 设置沉浸式全屏
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY |
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
-                        View.SYSTEM_UI_FLAG_FULLSCREEN |
-                        View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        );
+        FullscreenHelper.enableFullscreen(this);
 
         // 获取控件
         artworkImage = findViewById(R.id.artwork_image);

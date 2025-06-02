@@ -48,6 +48,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         holder.titleTextView.setText(article.getTitle(lang));
         holder.dateTextView.setText(article.getDate());
 
+        if ("en".equals(lang)) {
+            holder.titleTextView.setTextSize(16); // 英文小一点
+        } else {
+            holder.titleTextView.setTextSize(18); // 中文正常
+        }
+
 
         if (article.getImageUrl() != null && !article.getImageUrl().isEmpty()) {
             Glide.with(context)

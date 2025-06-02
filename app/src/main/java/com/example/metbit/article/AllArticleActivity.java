@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.metbit.R;
 import com.example.metbit.Retrofit.ApiClient;
 import com.example.metbit.Retrofit.ApiService;
+import com.example.metbit.common.FullscreenHelper;
 
 import java.util.List;
 import android.util.Log;
@@ -48,20 +49,14 @@ public class AllArticleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_article);
 
         // 沉浸式状态栏设置
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        );
+        FullscreenHelper.enableFullscreen(this);
 
         articleRecycler = findViewById(R.id.recycler_view);
         titleView = findViewById(R.id.title);
         backButton = findViewById(R.id.btn_back);
 
-        titleView.setText("全部文章");
+        String lang = getSharedPreferences("settings", MODE_PRIVATE).getString("language", "zh");
+        titleView.setText("zh".equals(lang) ? "全部文章" : "All Articles");
 
         articleRecycler.setLayoutManager(new LinearLayoutManager(this));
 

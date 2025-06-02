@@ -21,6 +21,7 @@ import com.example.metbit.Retrofit.ApiClient;
 import com.example.metbit.Retrofit.ApiService;
 import com.example.metbit.art.Artifact;
 import com.example.metbit.art.ArtifactAdapter;
+import com.example.metbit.common.FullscreenHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,14 +60,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         //设置沉浸式全屏
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        );
+        FullscreenHelper.enableFullscreen(this);
 
 
         //搜索功能

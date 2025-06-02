@@ -25,6 +25,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.example.metbit.R;
+import com.example.metbit.common.FullscreenHelper;
 
 import java.util.Locale;
 
@@ -96,14 +97,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
 
         //设置沉浸式全屏
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-        );
+        FullscreenHelper.enableFullscreen(this);
 
         ImageButton btnX = findViewById(R.id.btn_x);
         btnX.setOnClickListener(v -> finish());
@@ -122,14 +116,27 @@ public class SettingsActivity extends AppCompatActivity {
 
         findViewById(R.id.language_setting).setOnClickListener(v -> {
             // 获取当前语言
-            String currentLang = Locale.getDefault().getLanguage();
-            String nextLang = currentLang.equals("zh") ? "en" : "zh";
+            String currentLanguage = Locale.getDefault().getLanguage();
+            String newLanguage = currentLanguage.equals("zh") ? "en" : "zh";
 
             // 保存语言设置
-            prefs.edit().putString("language", nextLang).apply();
+            prefs.edit().putString("language", newLanguage).apply();
 
             // 切换语言
-            setLocale(SettingsActivity.this, nextLang);
+            Locale newLocale = new Locale(newLanguage);
+            Locale.setDefault(newLocale);
+            Configuration newConfig = new Configuration();
+            newConfig.setLocale(newLocale);
+            getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+
+            // 发送广播通知其他页面语言已更改
+            Intent langChangedIntent = new Intent("LANGUAGE_CHANGED");
+            LocalBroadcastManager.getInstance(this).sendBroadcast(langChangedIntent);
+
+            // 重启当前页面以刷新 UI
+            Intent restartIntent = getIntent();
+            finish();
+            startActivity(restartIntent);
         });
 
 
@@ -164,20 +171,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
-    //切换语言
-    public void setLocale(Context context, String langCode) {
-        Locale locale = new Locale(langCode);
-        Locale.setDefault(locale);
 
-        Configuration config = new Configuration();
-        config.setLocale(locale);
-
-        context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-
-        // 重启 Activity 以应用更改
-        Intent refresh = new Intent(context, SettingsActivity.class);
-        refresh.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(refresh);
-    }
 
 }
