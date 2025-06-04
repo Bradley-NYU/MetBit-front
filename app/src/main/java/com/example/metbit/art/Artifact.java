@@ -5,6 +5,10 @@ import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
 public class Artifact implements Parcelable {
+
+    @SerializedName("id")
+    private long id;
+
     @SerializedName("titleEn") private String titleEn;
     @SerializedName("titleZh") private String titleZh;
 
@@ -22,11 +26,13 @@ public class Artifact implements Parcelable {
 
 
     // 构造函数
-    public Artifact(String titleEn, String titleZh,
+    public Artifact(long id,
+                    String titleEn, String titleZh,
                     String periodEn, String periodZh,
                     String cultureEn, String cultureZh,
                     String descriptionEn, String descriptionZh,
                     String imageUrl, String thumbnailUrl) {
+        this.id = id;
         this.titleEn = titleEn;
         this.titleZh = titleZh;
         this.periodEn = periodEn;
@@ -40,6 +46,10 @@ public class Artifact implements Parcelable {
     }
 
     // 多语言 Getter
+
+    public long getId() {
+        return id;
+    }
     public String getTitle(String lang) {
         return lang.equals("en") ? titleEn : titleZh;
     }
@@ -66,6 +76,7 @@ public class Artifact implements Parcelable {
 
     // Parcelable实现
     protected Artifact(Parcel in) {
+        id = in.readLong();
         titleEn = in.readString();
         titleZh = in.readString();
         periodEn = in.readString();
@@ -80,6 +91,7 @@ public class Artifact implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
         dest.writeString(titleEn);
         dest.writeString(titleZh);
         dest.writeString(periodEn);
@@ -123,5 +135,17 @@ public class Artifact implements Parcelable {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", thumbnailUrl='" + thumbnailUrl + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Artifact)) return false;
+        Artifact other = (Artifact) obj;
+        return this.getId() == other.getId(); // 假设 ID 是唯一标识
+    }
+
+    @Override
+    public int hashCode() {
+        return Long.valueOf(getId()).hashCode(); // 或 getId().hashCode() 如果是 String
     }
 }

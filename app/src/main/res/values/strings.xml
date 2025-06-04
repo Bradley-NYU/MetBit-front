@@ -49,4 +49,34 @@
 
     <string name="search_hint">搜索你感兴趣的</string>
     <string name="cancel">取消</string>
+
+    <string name="privacy_text">
+我们非常重视您的隐私。\n
+\n
+本应用不会收集、存储或分享任何用户的个人信息。\n
+\n
+我们不使用广告、不进行行为追踪，也不连接任何第三方服务。\n
+\n
+如您对隐私政策有任何疑问，请联系我们：bl3880@nyu.edu
+</string>
+
+    <string name="about_text">
+
+嗨，我是 Bradley，纽约大学的学生。\n
+原本学文物学，后转行搞计算机（有实习机会欢迎砸来）。\n
+\n
+纽约的文化很是精彩，但就像我最喜欢的大都会博物馆——藏品多到看不过来。\n
+第一次去的时候简直无从下手\n
+\n
+我猜很多人都有同感，所以就做了这个 App。\n
+用最简洁清爽的方式，把我精选的文物内容打包给你，让艺术欣赏变得简单又有趣。\n
+\n
+有啥建议随时找我：bl3880@nyu.edu
+
+</string>
+
+    <string name="favorite_title">我的收藏</string>
+
+
+
 </resources>

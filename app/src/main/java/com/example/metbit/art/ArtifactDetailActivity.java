@@ -27,8 +27,10 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.metbit.R;
 import com.example.metbit.common.FullscreenHelper;
+import com.example.metbit.favorite.FavoriteManager;
 import com.github.chrisbanes.photoview.PhotoView;
 import android.graphics.drawable.BitmapDrawable;
+import android.widget.Toast;
 
 public class ArtifactDetailActivity extends AppCompatActivity {
 
@@ -69,6 +71,7 @@ public class ArtifactDetailActivity extends AppCompatActivity {
         TextView dynastyView = findViewById(R.id.artifact_dynasty);
         ImageButton musicBtn = findViewById(R.id.bnt_music);
         ImageButton descriptionBtn = findViewById(R.id.btn_description);
+        ImageButton btnFavorite = findViewById(R.id.btn_favorite);
 
         //  获取 Parcelable 对象
         artifact = getIntent().getParcelableExtra("artifact");
@@ -205,6 +208,26 @@ public class ArtifactDetailActivity extends AppCompatActivity {
         artworkImage.setOnClickListener(v -> {
             controlsVisible = !controlsVisible;
             overlayControls.setVisibility(controlsVisible ? View.VISIBLE : View.GONE);
+        });
+
+        //增加收藏功能
+        // 初始化图标（根据是否已收藏）
+        if (FavoriteManager.isFavorite(this, artifact)) {
+            btnFavorite.setImageResource(R.drawable.favorite_filled);
+        } else {
+            btnFavorite.setImageResource(R.drawable.favorite_outline);
+        }
+
+        btnFavorite.setOnClickListener(v -> {
+            if (FavoriteManager.isFavorite(this, artifact)) {
+                FavoriteManager.removeFavorite(this, artifact);
+                btnFavorite.setImageResource(R.drawable.favorite_outline);
+                Toast.makeText(this, "已取消收藏", Toast.LENGTH_SHORT).show();
+            } else {
+                FavoriteManager.saveFavorite(this, artifact);
+                btnFavorite.setImageResource(R.drawable.favorite_filled);
+                Toast.makeText(this, "已收藏", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 

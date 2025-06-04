@@ -176,6 +176,7 @@
 
         <!-- 清除缓存 -->
         <RelativeLayout
+            android:id="@+id/clear_cache_setting"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:paddingStart="24dp"
@@ -213,6 +214,7 @@
 
         <!-- 隐私政策 -->
         <RelativeLayout
+            android:id="@+id/privacy_setting"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:paddingStart="24dp"
@@ -251,6 +253,7 @@
 
         <!-- 关于我们 -->
         <RelativeLayout
+            android:id="@+id/about_us_section"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:paddingStart="24dp"

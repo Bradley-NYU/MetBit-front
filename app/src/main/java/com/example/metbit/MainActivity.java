@@ -40,6 +40,7 @@ import com.example.metbit.article.AllArticleActivity;
 import com.example.metbit.common.FullscreenHelper;
 import com.example.metbit.common.LocaleHelper;
 import com.example.metbit.custom.HoleTextView;
+import com.example.metbit.favorite.FavoriteActivity;
 import com.example.metbit.settings.SettingsActivity;
 import com.github.chrisbanes.photoview.PhotoView;
 
@@ -216,6 +217,11 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.bnt_map).setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, AllArticleActivity.class);
+            startActivity(intent);
+        });
+
+        findViewById(R.id.btn_favorite).setOnClickListener(v -> {
+            Intent intent = new Intent(this, FavoriteActivity.class);
             startActivity(intent);
         });
 

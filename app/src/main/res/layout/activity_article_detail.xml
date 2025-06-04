@@ -4,16 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#33c3b049">
 
     <!-- 顶部栏 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:paddingTop="36dp"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:background="#33c3b049">
+        android:layout_height="56dp"
+        android:layout_marginTop="36dp"
+        android:padding="12dp">
 
         <ImageButton
             android:id="@+id/btn_back"
@@ -22,27 +21,13 @@
             android:background="@null"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
-            android:src="@drawable/rebutton2"
+            android:src="@drawable/x"
             android:contentDescription="返回"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:textColor="#000000"
-            android:fontFamily="@font/ming_medium"
-            app:layout_constraintStart_toEndOf="@id/btn_back"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 可滚动内容区域 -->
@@ -52,7 +37,7 @@
         android:layout_weight="1"
         android:overScrollMode="always"
         android:fillViewport="true"
-        android:background="#33c3b049">
+       >
 
         <LinearLayout
             android:id="@+id/article_detail_container"
@@ -64,12 +49,48 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp">
 
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:fontFamily="@font/ming_medium"
+                android:layout_marginBottom="12dp" />
+
             <!-- 段落容器 -->
             <LinearLayout
                 android:id="@+id/paragraph_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"/>
+
+            <!-- 底部栏 -->
+            <LinearLayout
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp">
+
+                <!-- MET 图标 -->
+                <ImageView
+                    android:id="@+id/btn_home"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/metlogo"
+                    android:contentDescription="Home" />
+
+                -->
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+
+
 </LinearLayout>

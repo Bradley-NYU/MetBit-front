@@ -38,6 +38,14 @@
             android:name=".article.AllArticleActivity"
             android:exported="false" />
         <activity
+            android:name=".settings.PrivacyPolicyActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".settings.AboutUsActivity"
+            android:exported="false"/>
+        <activity android:name=".favorite.FavoriteActivity"
+            android:exported="false"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.MetBit"></activity>

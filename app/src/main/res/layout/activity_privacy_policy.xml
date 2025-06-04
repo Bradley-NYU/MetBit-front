@@ -3,12 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#33c3b049">
 
+    <!-- 顶部栏 -->
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#33c3b049">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <RelativeLayout
             android:paddingTop="36dp"
@@ -32,24 +33,29 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="全部文章"
+                android:text="隐私政策"
                 android:fontFamily="@font/ming_medium"
                 android:textSize="20sp"
                 android:layout_centerInParent="true"/>
         </RelativeLayout>
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"/>
-
-    <View
+    <!-- 内容区域 -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="#33c3b049"/>
+        android:padding="24dp">
 
+        <TextView
+            android:id="@+id/privacy_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:lineSpacingExtra="6dp"
+            android:fontFamily="@font/ming_medium"
+            android:text="我们非常重视您的隐私。\n\n本应用不会收集、存储或分享任何用户的个人信息。\n\n我们不使用广告、不进行行为追踪，也不连接任何第三方服务。\n\n如您对隐私政策有任何疑问，请联系我们：bl3880@email.com" />
+    </ScrollView>
 
 </LinearLayout>

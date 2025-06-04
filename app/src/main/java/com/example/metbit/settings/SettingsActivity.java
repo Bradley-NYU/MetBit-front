@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +24,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import com.bumptech.glide.Glide;
 
 import com.example.metbit.R;
 import com.example.metbit.common.FullscreenHelper;
 
+import java.io.File;
 import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -168,7 +171,53 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+        //清楚缓存
+        findViewById(R.id.clear_cache_setting).setOnClickListener(v -> {
+            clearAppCache(this);
 
+            // 清除 Glide 缓存
+            Glide.get(this).clearMemory();
+            new Thread(() -> Glide.get(this).clearDiskCache()).start();
+
+            // 提示用户
+            String message = "en".equals(langCode) ? "Cache cleared!" : "缓存已清除！";
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        });
+
+        findViewById(R.id.privacy_setting).setOnClickListener(v -> {
+            Intent policyIntent = new Intent(this, PrivacyPolicyActivity.class);
+            startActivity(policyIntent);
+        });
+
+        findViewById(R.id.about_us_section).setOnClickListener(v -> {
+            startActivity(new Intent(this, AboutUsActivity.class));
+        });
+
+
+
+    }
+    private void clearAppCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDirRecursively(dir);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean deleteDirRecursively(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            if (children != null) {
+                for (String child : children) {
+                    boolean success = deleteDirRecursively(new File(dir, child));
+                    if (!success) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return dir == null || dir.delete();
     }
 
 
