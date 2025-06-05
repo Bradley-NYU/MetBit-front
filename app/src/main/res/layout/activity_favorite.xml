@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -7,31 +6,29 @@
     android:orientation="vertical"
     >
 
-
+    <!-- 顶部栏背景容器 -->
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#33c3b049"
-        >
+        android:background="#33c3b049">
 
+        <!-- 顶部标题栏 -->
         <RelativeLayout
-            android:paddingTop="36dp"
-            android:layout_marginTop="36dp"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:paddingTop="36dp"
             android:padding="12dp"
-
-            >
+            android:layout_marginTop="36dp">
 
             <ImageButton
                 android:id="@+id/btn_back"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
                 android:background="@null"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true"
-                android:src="@drawable/rebutton2"
+                android:src="@drawable/x"
                 android:contentDescription="返回" />
 
             <TextView
@@ -41,11 +38,11 @@
                 android:text="@string/favorite_title"
                 android:fontFamily="@font/ming_medium"
                 android:textSize="20sp"
-                android:layout_centerInParent="true"
-                />
+                android:layout_centerInParent="true"/>
         </RelativeLayout>
     </RelativeLayout>
 
+    <!-- RecyclerView 占满剩余区域 -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"

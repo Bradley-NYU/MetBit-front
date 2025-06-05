@@ -29,6 +29,8 @@ import com.example.metbit.R;
 import com.example.metbit.common.FullscreenHelper;
 import com.example.metbit.favorite.FavoriteManager;
 import com.github.chrisbanes.photoview.PhotoView;
+import com.google.gson.Gson;
+
 import android.graphics.drawable.BitmapDrawable;
 import android.widget.Toast;
 
@@ -226,6 +228,7 @@ public class ArtifactDetailActivity extends AppCompatActivity {
             } else {
                 FavoriteManager.saveFavorite(this, artifact);
                 btnFavorite.setImageResource(R.drawable.favorite_filled);
+                Log.d("收藏测试", "当前收藏列表: " + new Gson().toJson(FavoriteManager.loadFavorites(this)));
                 Toast.makeText(this, "已收藏", Toast.LENGTH_SHORT).show();
             }
         });

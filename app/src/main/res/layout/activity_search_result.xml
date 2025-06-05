@@ -27,18 +27,18 @@
                     android:id="@+id/btn_back"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
                     android:background="@null"
                     android:scaleType="fitCenter"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/rebutton2"
+                    android:src="@drawable/x"
                     android:contentDescription="返回" />
 
                 <TextView
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="搜索结果"
+                    android:text="@string/search_result"
                     android:fontFamily="@font/ming_medium"
                     android:textSize="20sp"
                     android:layout_centerInParent="true"

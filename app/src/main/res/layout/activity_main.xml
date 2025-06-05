@@ -79,6 +79,7 @@
                 android:focusable="true"/>
         </RelativeLayout>
 
+
         <ImageButton
             android:id="@+id/bnt_map"
             android:layout_width="48dp"
@@ -145,6 +146,144 @@
                 android:contentDescription="设置"/>
         </LinearLayout>
     </FrameLayout>
+    </FrameLayout>
+
+    <!-- 文物详情模式下的控件：顶部按钮 + 收藏 + 标题 -->
+    <FrameLayout
+        android:id="@+id/artifact_detail_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <!-- 顶部按钮区域 -->
+        <RelativeLayout
+            android:id="@+id/artifact_top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageButton
+                android:id="@+id/btn_music"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/music"
+                android:background="@null"
+                android:layout_marginTop="36dp"
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <ImageButton
+                android:id="@+id/btn_description"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/description"
+                android:background="@null"
+                android:layout_marginTop="36dp"
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <ImageButton
+                android:id="@+id/btn_return"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/arrows"
+                android:background="@null"
+                android:layout_marginTop="36dp"
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                android:focusable="true"/>
+        </RelativeLayout>
+
+        <!-- 收藏按钮 -->
+        <ImageButton
+            android:id="@+id/btn_like"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end|bottom"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="130dp"
+            android:src="@drawable/favorite_outline"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:contentDescription="收藏" />
+
+        <!-- 文物标题与年代 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/artifact_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/ming_medium"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/artifact_dynasty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/ming_medium"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- 描述弹出遮罩层 -->
+        <FrameLayout
+            android:id="@+id/description_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B3000000"
+            android:visibility="gone">
+
+            <!-- 可滚动的文字内容 -->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="80dp"
+                android:paddingBottom="24dp">
+
+                <TextView
+                    android:id="@+id/artifact_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="8dp"
+                    android:fontFamily="@font/ming_medium"
+                    android:paddingLeft="48dp"
+                    android:paddingRight="48dp"
+                    android:paddingTop="24dp"/>
+            </ScrollView>
+
+            <!-- 关闭按钮 -->
+            <ImageButton
+                android:id="@+id/btn_close_description"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="end|top"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/x"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:contentDescription="Close description" />
+        </FrameLayout>
+
     </FrameLayout>
 
 </FrameLayout>

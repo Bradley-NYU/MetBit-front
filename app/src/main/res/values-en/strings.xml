@@ -61,5 +61,9 @@ to deliver handpicked highlights of The Met in the cleanest, most delightful way
 Feel free to reach out: bl3880@nyu.edu
 </string>
 
+    <string name="favorite_title">My Favorite</string>
+
+    <string name="search_result">Search_Result</string>
+
 
 </resources>
