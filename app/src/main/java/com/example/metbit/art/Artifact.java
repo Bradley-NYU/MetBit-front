@@ -12,6 +12,9 @@ public class Artifact implements Parcelable {
     @SerializedName("titleEn") private String titleEn;
     @SerializedName("titleZh") private String titleZh;
 
+    @SerializedName("artistEn") private String artistEn;
+    @SerializedName("artistZh") private String artistZh;
+
     @SerializedName("periodEn") private String periodEn;
     @SerializedName("periodZh") private String periodZh;
 
@@ -28,6 +31,7 @@ public class Artifact implements Parcelable {
     // 构造函数
     public Artifact(long id,
                     String titleEn, String titleZh,
+                    String artistEn, String artistZh,
                     String periodEn, String periodZh,
                     String cultureEn, String cultureZh,
                     String descriptionEn, String descriptionZh,
@@ -35,6 +39,8 @@ public class Artifact implements Parcelable {
         this.id = id;
         this.titleEn = titleEn;
         this.titleZh = titleZh;
+        this.artistEn = artistEn; // 新增
+        this.artistZh = artistZh; // 新增
         this.periodEn = periodEn;
         this.periodZh = periodZh;
         this.cultureEn = cultureEn;
@@ -50,8 +56,13 @@ public class Artifact implements Parcelable {
     public long getId() {
         return id;
     }
+
+
     public String getTitle(String lang) {
         return lang.equals("en") ? titleEn : titleZh;
+    }
+
+    public String getArtist(String lang) {return lang.equals("en") ? artistEn : artistZh;
     }
 
     public String getPeriod(String lang) {
@@ -79,6 +90,8 @@ public class Artifact implements Parcelable {
         id = in.readLong();
         titleEn = in.readString();
         titleZh = in.readString();
+        artistEn = in.readString(); // 新增
+        artistZh = in.readString(); // 新增
         periodEn = in.readString();
         periodZh = in.readString();
         cultureEn = in.readString();
@@ -94,6 +107,8 @@ public class Artifact implements Parcelable {
         dest.writeLong(id);
         dest.writeString(titleEn);
         dest.writeString(titleZh);
+        dest.writeString(artistEn); // 新增
+        dest.writeString(artistZh); // 新增
         dest.writeString(periodEn);
         dest.writeString(periodZh);
         dest.writeString(cultureEn);
@@ -126,6 +141,8 @@ public class Artifact implements Parcelable {
         return "Artifact{" +
                 "titleEn='" + titleEn + '\'' +
                 ", titleZh='" + titleZh + '\'' +
+                ", artistEn='" + artistEn + '\'' +   // 新增
+                ", artistZh='" + artistZh + '\'' +   // 新增
                 ", periodEn='" + periodEn + '\'' +
                 ", periodZh='" + periodZh + '\'' +
                 ", cultureEn='" + cultureEn + '\'' +

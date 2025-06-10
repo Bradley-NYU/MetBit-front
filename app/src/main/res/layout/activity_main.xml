@@ -238,6 +238,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
                 android:fontFamily="@font/ming_medium"
+                android:layout_gravity="center"
+                android:textAlignment="center"
                 android:textSize="14sp" />
         </LinearLayout>
 

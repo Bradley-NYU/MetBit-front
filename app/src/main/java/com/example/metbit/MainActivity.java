@@ -146,34 +146,30 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public boolean onResourceReady(Drawable resource, Object model,
                                                                Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                    // ✅ 保留你的缩放设置逻辑
-                                    artworkImage.post(() -> {
-                                        int imageHeight = resource.getIntrinsicHeight();
-                                        int viewHeight = artworkImage.getHeight();
-
-                                        float scale = (float) viewHeight / imageHeight;
-                                        float mediumScale = scale * 1.8f;
-                                        float maxScale = scale * 3.0f;
-
-                                        artworkImage.setMinimumScale(scale);
-                                        artworkImage.setMediumScale(mediumScale);
-                                        artworkImage.setMaximumScale(maxScale);
-                                        artworkImage.setScale(scale, true);
-                                    });
+                                    setupImageScaleAndPosition(resource);  // 使用你封装的新方法
                                     return false;
                                 }
                             })
                             .into(artworkImage);
 
-                    // ✅ 设置文物信息
+                    // 设置文物信息
                     String lang = LocaleHelper.getCurrentLanguage(MainActivity.this);
-                    titleView.setText(artifact.getTitle(lang));
-                    dynastyView.setText(String.format("%s · %s",
-                            artifact.getCulture(lang),
-                            artifact.getPeriod(lang)));
-                    descriptionView.setText(artifact.getDescription(lang));
+                    String culture = artifact.getCulture(lang);
+                    String artist = artifact.getArtist(lang);
+                    String period = artifact.getPeriod(lang);
 
-                    // ✅ 收藏按钮逻辑
+                    StringBuilder dynastyText = new StringBuilder();
+                    dynastyText.append(culture);
+
+                    if (artist != null && !artist.trim().isEmpty()) {
+                        dynastyText.append(" · ").append(artist);
+                    } else if (period != null && !period.trim().isEmpty()) {
+                        dynastyText.append(" · ").append(period);
+                    }
+
+                    dynastyView.setText(dynastyText.toString());
+
+                    // 收藏按钮逻辑
                     if (FavoriteManager.isFavorite(MainActivity.this, artifact)) {
                         btnLike.setImageResource(R.drawable.favorite_filled);
                     } else {
@@ -191,6 +187,12 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+                    // 初始化音乐播放器（使用 AudioManager 控制播放）
+                    boolean isSoundEnabled = prefs.getBoolean("sound_enabled", true);
+                    if (prefs.getBoolean("sound_enabled", true)) {
+                        AudioManager.play(MainActivity.this, R.raw.piano1);
+                    }
                 }
             }
 
@@ -370,15 +372,21 @@ public class MainActivity extends AppCompatActivity {
 
                 String detail = months[month - 1] + " · " + weeks[dayOfWeek - 1];
                 dateDetail.setText(detail);
+
+                //  更新文物文本信息（如存在）
+                if (artifact != null) {
+                    String lang = langCode;
+                    titleView.setText(artifact.getTitle(lang));
+                    dynastyView.setText(String.format("%s · %s",
+                            artifact.getCulture(lang),
+                            artifact.getPeriod(lang)));
+                    descriptionView.setText(artifact.getDescription(lang));
+                }
             }
         };
 
 
-        // 初始化音乐播放器（使用 AudioManager 控制播放）
-        boolean isSoundEnabled = prefs.getBoolean("sound_enabled", true);
-        if (isSoundEnabled) {
-            AudioManager.play(this, R.raw.piano1);  // 播放音乐（会自动释放旧实例）
-        }
+
 
         // 音乐播放按钮逻辑：切换播放/暂停
         musicBtn.setOnClickListener(v -> {
@@ -442,5 +450,48 @@ public class MainActivity extends AppCompatActivity {
         if (languageChangedReceiver != null) {
             LocalBroadcastManager.getInstance(this).unregisterReceiver(languageChangedReceiver);
         }
+    }
+
+    private void setupImageScaleAndPosition(Drawable drawable) {
+        artworkImage.post(() -> {
+            try {
+                int imageWidth = drawable.getIntrinsicWidth();
+                int imageHeight = drawable.getIntrinsicHeight();
+                int viewWidth = artworkImage.getWidth();
+                int viewHeight = artworkImage.getHeight();
+
+                float baseScale = (float) viewHeight / imageHeight;
+                float targetScale = baseScale * 1.3f;
+
+                boolean isLandscape = imageWidth > imageHeight;
+                float offsetX = 0f;
+                float offsetY = 0f;
+
+                if (isLandscape) {
+                    float widthScale = (float) viewWidth / imageWidth;
+                    targetScale = Math.max(baseScale, widthScale) * 1.3f;
+
+                    float scaledWidth = imageWidth * targetScale;
+                    float scaledHeight = imageHeight * targetScale;
+                    offsetX = (viewWidth - scaledWidth) / 2f;
+                    offsetY = (viewHeight - scaledHeight) / 2f;
+                } else {
+                    offsetX = viewWidth / 1.8f;
+                    offsetY = viewHeight * 0.2f;
+                }
+
+                Matrix matrix = new Matrix();
+                matrix.postScale(targetScale, targetScale);
+                matrix.postTranslate(offsetX, offsetY);
+                artworkImage.setSuppMatrix(matrix);
+
+                artworkImage.setMinimumScale(targetScale);
+                artworkImage.setMediumScale(targetScale * 1.1f);
+                artworkImage.setMaximumScale(targetScale * 2f);
+
+            } catch (Exception e) {
+                Log.e("ImageScale", "Error: " + e.getMessage());
+            }
+        });
     }
 }

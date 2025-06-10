@@ -79,10 +79,6 @@ public class ArtifactDetailActivity extends AppCompatActivity {
         artifact = getIntent().getParcelableExtra("artifact");
 
 
-        Log.d("CHECK", "titleEn = " + artifact.getTitle("en"));
-        Log.d("CHECK", "titleZh = " + artifact.getTitle("zh"));
-        Log.d("CHECK", "当前设置语言 = " + lang);
-
         // 设置沉浸式全屏
         FullscreenHelper.enableFullscreen(this);
 
@@ -98,7 +94,6 @@ public class ArtifactDetailActivity extends AppCompatActivity {
         View descriptionOverlay = findViewById(R.id.description_overlay);
         TextView descriptionView = findViewById(R.id.artifact_description);
         ImageButton closeBtn = findViewById(R.id.btn_close_description);
-
 
 
         // 显示介绍层
@@ -161,11 +156,20 @@ public class ArtifactDetailActivity extends AppCompatActivity {
         if (artifact != null) {
             titleView.setText(artifact.getTitle(lang));
 
+            String culture = artifact.getCulture(lang);
+            String artist = artifact.getArtist(lang);
+            String period = artifact.getPeriod(lang);
 
-            dynastyView.setText(String.format("%s · %s",
-                    artifact.getCulture(lang),
-                    artifact.getPeriod(lang))
-            );
+            StringBuilder dynastyText = new StringBuilder();
+            dynastyText.append(culture);
+
+            if (artist != null && !artist.trim().isEmpty()) {
+                dynastyText.append(" · ").append(artist);
+            } else if (period != null && !period.trim().isEmpty()) {
+                dynastyText.append(" · ").append(period);
+            }
+
+            dynastyView.setText(dynastyText.toString());
 
             descriptionView.setText(artifact.getDescription(lang));
 

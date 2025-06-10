@@ -48,17 +48,13 @@ This app does not collect, store, or share any personal data.\n
 \n
 We do not use advertisements, analytics, or third-party services.\n
 \n
-For any questions, contact us at: bl3880@nyu.edu
+For any questions, contact us at: metbit.app@gmail.com
 </string>
 
     <string name="about_text">
-Hi, I am Bradley, a student at NYU and an independent developer.\n
-I used to study cultural heritage, but later switched to computer science to make a living (internship offers are welcome!).\n\n
-New York cultural scene is dazzling, and my favorite spot is The Met, a museum so rich in treasures it can be overwhelming.\n
-I still remember my first visit: over a million artifacts. What should I see? Where are the must-see pieces?\n\n
-I realized I was not the only one who felt that way. That is why I created this app:\n
-to deliver handpicked highlights of The Met in the cleanest, most delightful way possible.\n\n
-Feel free to reach out: bl3880@nyu.edu
+This app is independently developed by a Computer Science student at New York University. The developer previously majored in museology and is now dedicated to using technology to reinterpret art and history. The Metropolitan Museum of Art houses an immense and profound collection that often feels overwhelming.\n
+\n
+To make it more approachable, I have carefully selected iconic artifacts and distilled their essence—so that users may, in the words of a Chinese proverb, “see the whole through a single piece” and explore the beauty of art with ease.
 </string>
 
     <string name="favorite_title">My Favorite</string>
